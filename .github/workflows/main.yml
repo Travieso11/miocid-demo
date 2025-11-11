@@ -14,4 +14,4 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Probar codigo
-        run: python3 main.py
+        run: python3 name.py
