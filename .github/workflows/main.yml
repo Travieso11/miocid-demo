@@ -16,8 +16,14 @@ jobs:
       - name: Probar codigo
         run: python3 name.py
 
-      - name: Crear imagen Docker
-        run: docker build -t asierreinoso/holamundo .
-
-      - name: Probar contenedor Docker
-        run: docker run asierreinoso/holamundo
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+        
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: asierreinoso/holamundo
